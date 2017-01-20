@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+option java_package = "com.skplanet.ocbcheck.api";
+
+service AccountApi {
+    rpc authentication (AuthApiRequest) returns (AuthApiResponse) {}
+    rpc start (StartApiRequest) returns (StartApiResponse) {}
+    rpc termination (TerminationApiRequest) returns (TerminationApiResponse) {}
+}
+
+message AuthApiRequest {
+    message AccountInfo {
+        string bankCode = 1;
+        string accountNo = 2;
+        string ownerName = 3;
+        string birthDate = 4;
+    }
+
+    AccountInfo accountInfo = 1;
+}
+
+message AuthApiResponse {
+    int64 timestamp = 1;
+    string code = 2;
+    string message = 3;
+
+    message AccountInfo {
+        string bankCode = 1;
+        string bankName = 2;
+        string payerNo = 3;
+    }
+
+    AccountInfo accountInfo = 4;
+}
+
+message StartApiRequest {
+    message AccountInfo {
+        string bankCode = 1;
+        string accountNo = 2;
+        string birthDate = 3;
+        string payerNo = 4;
+    }
+
+    AccountInfo accountInfo = 1;
+}
+
+message StartApiResponse {
+    int64 timestamp = 1;
+    string code = 2;
+    string message = 3;
+}
+
+message TerminationApiRequest {
+    message AccountInfo {
+        string bankCode = 1;
+        string accountNo = 2;
+        string birthDate = 3;
+        string payerNo = 4;
+    }
+
+    AccountInfo accountInfo = 1;
+}
+
+message TerminationApiResponse {
+    int64 timestamp = 1;
+    string code = 2;
+    string message = 3;
+}
